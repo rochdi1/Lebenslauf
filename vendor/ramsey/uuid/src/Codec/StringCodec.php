@@ -74,6 +74,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $encodedUuid
      * @return UuidInterface
+     * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
      */
     public function decode($encodedUuid)
     {
@@ -88,6 +89,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $bytes
      * @return UuidInterface
+     * @throws \InvalidArgumentException if string has not 16 characters
      */
     public function decodeBytes($bytes)
     {
@@ -115,6 +117,7 @@ class StringCodec implements CodecInterface
      *
      * @param string $encodedUuid
      * @return array
+     * @throws \Ramsey\Uuid\Exception\InvalidUuidStringException
      */
     protected function extractComponents($encodedUuid)
     {
@@ -156,12 +159,12 @@ class StringCodec implements CodecInterface
     protected function getFields(array $components)
     {
         return array(
-            'time_low' => sprintf('%08s', $components[0]),
-            'time_mid' => sprintf('%04s', $components[1]),
-            'time_hi_and_version' => sprintf('%04s', $components[2]),
-            'clock_seq_hi_and_reserved' => sprintf('%02s', substr($components[3], 0, 2)),
-            'clock_seq_low' => sprintf('%02s', substr($components[3], 2)),
-            'node' => sprintf('%012s', $components[4])
+            'time_low' => str_pad($components[0], 8, '0', STR_PAD_LEFT),
+            'time_mid' => str_pad($components[1], 4, '0', STR_PAD_LEFT),
+            'time_hi_and_version' => str_pad($components[2], 4, '0', STR_PAD_LEFT),
+            'clock_seq_hi_and_reserved' => str_pad(substr($components[3], 0, 2), 2, '0', STR_PAD_LEFT),
+            'clock_seq_low' => str_pad(substr($components[3], 2), 2, '0', STR_PAD_LEFT),
+            'node' => str_pad($components[4], 12, '0', STR_PAD_LEFT)
         );
     }
 }

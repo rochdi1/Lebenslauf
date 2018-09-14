@@ -26,7 +26,7 @@ class RedirectResponse extends BaseRedirectResponse
     protected $request;
 
     /**
-     * The session store implementation.
+     * The session store instance.
      *
      * @var \Illuminate\Session\Store
      */
@@ -132,8 +132,14 @@ class RedirectResponse extends BaseRedirectResponse
     {
         $value = $this->parseErrors($provider);
 
+        $errors = $this->session->get('errors', new ViewErrorBag);
+
+        if (! $errors instanceof ViewErrorBag) {
+            $errors = new ViewErrorBag;
+        }
+
         $this->session->flash(
-            'errors', $this->session->get('errors', new ViewErrorBag)->put($key, $value)
+            'errors', $errors->put($key, $value)
         );
 
         return $this;
@@ -186,7 +192,7 @@ class RedirectResponse extends BaseRedirectResponse
     }
 
     /**
-     * Get the session store implementation.
+     * Get the session store instance.
      *
      * @return \Illuminate\Session\Store|null
      */
@@ -196,7 +202,7 @@ class RedirectResponse extends BaseRedirectResponse
     }
 
     /**
-     * Set the session store implementation.
+     * Set the session store instance.
      *
      * @param  \Illuminate\Session\Store  $session
      * @return void
@@ -225,8 +231,8 @@ class RedirectResponse extends BaseRedirectResponse
             return $this->with(Str::snake(substr($method, 4)), $parameters[0]);
         }
 
-        throw new BadMethodCallException(
-            "Method [$method] does not exist on Redirect."
-        );
+        throw new BadMethodCallException(sprintf(
+            'Method %s::%s does not exist.', static::class, $method
+        ));
     }
 }

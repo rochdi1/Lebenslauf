@@ -40,3 +40,7 @@ Route::get('experience/{id}', 'ExperienceController@create');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::get('getexperiences/{id}', 'CvController@getExperiences');
+Route::post('/addexperience', 'CvController@addExperiences');

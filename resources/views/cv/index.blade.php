@@ -38,7 +38,7 @@
                
                 <a href="{{ url('cvs/'.$cv->id) }}" class="btn btn-primary" role="button">Show</a> 
                 
-
+                <!--  la donction can est une fonction de CvPolicy     -->
                 @can('update', $cv)
                 <a href="{{ url('cvs/'.$cv->id.'/edit') }}" class="btn btn-warning" role="button">Bearbeiten</a>
                 @endcan

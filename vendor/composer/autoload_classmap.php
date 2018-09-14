@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddBodyToExperiences' => $baseDir . '/database/migrations/2018_09_14_174805_add_body_to_experiences.php',
     'AddColumnDeletedAtCvs' => $baseDir . '/database/migrations/2018_09_04_190251_add_column_deleted_at_cvs.php',
     'AddColumnIsAdminUsers' => $baseDir . '/database/migrations/2018_09_14_132644_add_column_isadmin_users.php',
     'AddColumnPhotoInCvs' => $baseDir . '/database/migrations/2018_09_14_133446_add_column_photo_in_cvs.php',

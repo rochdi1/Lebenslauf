@@ -24,13 +24,13 @@ class CvController extends Controller
     //lister les cvs
     public function index()
     {
+        //si l`utilisateur est un admin afficher toute les machins
         if (Auth::user()->is_admin) {
             $listcv = Cv::all();
         } else {
             $listcv = Auth::user()->cvs;
         }
-        
-
+       
         return view('cv.index', ['cvs' => $listcv]);
     }
     
@@ -114,10 +114,10 @@ class CvController extends Controller
         $cv = Cv::find($id);
         
         $experiences = [
-           ["titre" => "Experience en laravel", "debut" => "2013-10-10", "fin" => "2010-12-10"],
-           ["titre" => "Experience en symfony", "debut" => "2013-10-10", "fin" => "2010-12-10"],
-           ["titre" => "Experience en Sécurité", "debut" => "2013-10-10", "fin" => "2010-12-10"],
-           ["titre" => "Experience en Firebase", "debut" => "2013-10-10", "fin" => "2010-12-10"],
+           ["titre" => "Experience en laravel", "debut" => "2018-10-10", "fin" => "2018-12-10"],
+           ["titre" => "Experience en symfony", "debut" => "2018-10-10", "fin" => "2018-12-10"],
+           ["titre" => "Experience en Sécurité", "debut" => "2018-10-10", "fin" => "2018-12-10"],
+           ["titre" => "Experience en Firebase", "debut" => "2018-10-10", "fin" => "2018-12-10"],
         ];
 
 
@@ -135,5 +135,30 @@ class CvController extends Controller
         $cv = Cv::find($id);
 
         return view('experience.show', ['cv' => $cv]);
+    }
+
+
+    public function getExperiences($id) {
+
+        $cv = Cv::find($id);
+       
+        return $cv->experiences;
+    }
+
+
+    public function addExperiences(Request $request) {
+
+        $experience = new Experience();
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->debut = $request->debut;
+        $experience->fin = $request->fin;
+        $experience->save();
+
+    
+        return Response()->json(['etat' => true, 'id' => $experience->id]);
+    
+       
     }
 }

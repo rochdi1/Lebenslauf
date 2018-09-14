@@ -21,7 +21,7 @@ class CreateExperiencesTable extends Migration
             $table->integer('cv_id')->unsigned();
             $table->foreign('cv_id')->references('id')->on('cvs');
             $table->timestamps();
-            $table->timestamps();
+           
         });
     }
 

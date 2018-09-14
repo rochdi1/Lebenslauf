@@ -319,6 +319,7 @@ class ComposerStaticInit28da2b85080d34216a61d4837589be93
     );
 
     public static $classMap = array (
+        'AddBodyToExperiences' => __DIR__ . '/../..' . '/database/migrations/2018_09_14_174805_add_body_to_experiences.php',
         'AddColumnDeletedAtCvs' => __DIR__ . '/../..' . '/database/migrations/2018_09_04_190251_add_column_deleted_at_cvs.php',
         'AddColumnIsAdminUsers' => __DIR__ . '/../..' . '/database/migrations/2018_09_14_132644_add_column_isadmin_users.php',
         'AddColumnPhotoInCvs' => __DIR__ . '/../..' . '/database/migrations/2018_09_14_133446_add_column_photo_in_cvs.php',

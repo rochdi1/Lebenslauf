@@ -38,8 +38,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+   <!-- <script src="{{ asset('js/app.js') }}"></script> -->
 
+   <!-- javascript code de Vue js -->
     @yield('javascripts')
 </body>
 </html>

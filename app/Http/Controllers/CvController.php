@@ -161,4 +161,33 @@ class CvController extends Controller
     
        
     }
+
+
+    public function updateExperiences(Request $request) {
+
+        $experience = Experience::find($request->id);
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->debut = $request->debut;
+        $experience->fin = $request->fin;
+        $experience->save();
+
+    
+        return Response()->json(['etat' => true]);
+    
+       
+    }
+
+
+    public function deleteExperiences($id)
+    {
+        $experience = Experience::find($id);
+
+        $experience->delete();
+        return Response()->json(['etat' => true]);
+
+        
+    }
+
 }

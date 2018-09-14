@@ -44,3 +44,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('getexperiences/{id}', 'CvController@getExperiences');
 Route::post('/addexperience', 'CvController@addExperiences');
+Route::put('/updateexperience', 'CvController@updateExperiences');
+Route::put('/deleteexperience/{id}', 'CvController@deleteExperiences');
+

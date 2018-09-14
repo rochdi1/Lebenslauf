@@ -25,7 +25,7 @@
       @foreach($cvs as $cv)
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="{{ asset('storage/'.$cv->photo) }}" alt="...">
+          <img src="{{ asset('storage/'.$cv->photo) }}" alt="..." class="myimg">
           <div class="caption">
             <h3>{{ $cv->titre }}</h3>
             <p>...</p>

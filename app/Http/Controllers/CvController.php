@@ -65,6 +65,7 @@ class CvController extends Controller
     {
         $cv = Cv::find($id);
 
+        // le nom de function 'update' danc class CvPolicy
         $this->authorize('update', $cv);
 
         return view('cv.edit', ['cv' => $cv]);

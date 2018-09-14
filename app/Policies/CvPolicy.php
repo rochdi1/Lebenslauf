@@ -49,7 +49,9 @@ class CvPolicy
      */
     public function update(User $user, Cv $cv)
     {
-        return true;
+        // return true;
+
+        return $user->id === $cv->user_id; //boolean
     }
 
     /**

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

@@ -37,6 +37,7 @@
            
             <div class="form-group">
               <label for="">Image</label>
+              <img src="{{ asset('storage/'.$cv->photo) }}" alt="..." style="width:50px; height:50px;">
               <input class="form-control" type="file" name="photo">
             </div>
 

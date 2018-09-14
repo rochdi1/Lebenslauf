@@ -18,6 +18,18 @@ Route::get('/', function () {
 
 
 Route::resource('cvs', 'CvController');
+/*
+Route::get('cvs', 'CvController@index');
+Route::get('cvs/create', 'CvController@create');
+Route::post('cvs', 'CvController@store');
+Route::get('cvs/{id}/edit', 'CvController@edit');
+Route::put('cvs{id}', 'CvController@update');
+Route::delete('cvs/{id}', 'CvController@destroy');
+Route::get('cvs/{id}', 'CvController@show');
+*/
+
+
+
 
 Route::get('cv/experience/create/{id}', 'CvController@cvExperienceCreate');
 Route::get('cv/experience/show/{id}', 'CvController@cvExperienceShow');

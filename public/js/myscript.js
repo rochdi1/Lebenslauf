@@ -213,7 +213,7 @@ var app = new Vue({
            
             axios.put(window.Laravel.url + '/updateausbildung', this.ausbildung)
                 .then(response => {
-                    console.log(esponse.data.etat);
+                  
                     if (response.data.etat) {
 
                         this.openaus = false;

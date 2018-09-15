@@ -99,15 +99,6 @@
 											<input type="text" name="description" class="form-control" v-model="ausbildung.description">
 										   </div>
 						   
-									   <div class="form-group">
-										<label for="debut">Anfangsdatum</label>
-										<input type="date" name="debut" class="form-control" v-model="ausbildung.debut">
-									   </div>
-						   
-									   <div class="form-group">
-										<label for="fin">Enddatum</label>
-										<input type="date" name="fin" class="form-control" v-model="ausbildung.fin">
-									   </div>
 						   
 									   <div class="form-group">	
 										<button v-if="editaus" type="submit" class="  btn btn-danger form-control" v-on:click="updateAusbildung">Update</button>
@@ -129,7 +120,7 @@
 								</div>
 								<h3>@{{ exp.titre }}</h3>
 								<p>@{{ exp.description }}</p>
-								<small>@{{ exp.debut }} - @{{ exp.fin }}</small>
+								
 							</li>
 						</ul>
 	

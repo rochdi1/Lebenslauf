@@ -31,11 +31,11 @@
                         @else
                             <li><a href="{{ url('cvs') }}">mes cv</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" v-on:click='isOpen = !isOpen'>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
-                                <ul class="dropdown-menu" role="menu">
+                      
+                                <ul class="dropdown-menu" role="menu" v-show="isOpen">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -43,7 +43,8 @@
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> 
+                                              
                                             {{ csrf_field() }}
                                         </form>
                                     </li>

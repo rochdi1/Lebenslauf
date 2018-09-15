@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
 use App\Cv;
-
+use App\formations;
+use App\portfolio;
+use App\projets;
 use App\Experience;
+use App\competences;
 
 use Auth;
 
@@ -138,16 +141,35 @@ class CvController extends Controller
     }
 
 
-    public function getExperiences($id) {
 
+    public function getData($id)
+    {
         $cv = Cv::find($id);
-       
+        $experiences = $cv->experiences()->orderBy('debut', 'desc')->get();
+        $formations = $cv->formations()->orderBy('updated_at', 'desc')->get();
+        $competences = $cv->competences()->orderBy('updated_at', 'desc')->get();
+        $projets = $cv->projets()->orderBy('updated_at', 'desc')->get();
+        
+        return Response()->json([
+            'experiences' => $experiences,
+            'formations' => $formations,
+            'competences' => $competences,
+            'projets' => $projets,
+             ]);
+    }
+
+    // Experiences experiences
+
+    public function getExperiences($id)
+    {
+        $cv = Cv::find($id);
+
         return $cv->experiences;
     }
 
 
-    public function addExperiences(Request $request) {
-
+    public function addExperiences(Request $request)
+    {
         $experience = new Experience();
         $experience->titre = $request->titre;
         $experience->body = $request->body;
@@ -155,16 +177,11 @@ class CvController extends Controller
         $experience->debut = $request->debut;
         $experience->fin = $request->fin;
         $experience->save();
-
-    
         return Response()->json(['etat' => true, 'id' => $experience->id]);
-    
-       
     }
 
-
-    public function updateExperiences(Request $request) {
-
+    public function updateExperiences(Request $request)
+    {
         $experience = Experience::find($request->id);
         $experience->titre = $request->titre;
         $experience->body = $request->body;
@@ -172,22 +189,155 @@ class CvController extends Controller
         $experience->debut = $request->debut;
         $experience->fin = $request->fin;
         $experience->save();
-
-    
         return Response()->json(['etat' => true]);
-    
-       
     }
 
 
     public function deleteExperiences($id)
     {
         $experience = Experience::find($id);
-
         $experience->delete();
         return Response()->json(['etat' => true]);
-
-        
     }
 
+    // Ausbildung ausbildung
+
+    public function addAusbildung(Request $request)
+    {
+        $experience = new formations();
+        $experience->titre = $request->titre;
+        $experience->description = $request->description;
+        $experience->cv_id = $request->cv_id;
+        $experience->debut = $request->debut;
+        $experience->fin = $request->fin;
+        $experience->save();
+        return Response()->json(['etat' => true, 'id' => $experience->id]);
+    }
+
+
+    public function updateAusbildung(Request $request)
+    {
+        $experience = formations::find($request->id);
+        $experience->titre = $request->titre;
+        $experience->description = $request->description;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        
+        return Response()->json(['etat' => true]);
+    }
+
+
+    public function deleteAusbildung($id)
+    {
+        $experience = formations::find($id);
+        $experience->delete();
+        return Response()->json(['etat' => true]);
+    }
+
+
+    //Project project
+
+    public function addProject(Request $request)
+    {
+        $experience = new project();
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true, 'id' => $experience->id]);
+    }
+
+    public function updateProject(Request $request)
+    {
+        $experience = project::find($request->id);
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true]);
+    }
+
+    public function deleteProject($id)
+    {
+        $experience = project::find($id);
+        $experience->delete();
+        return Response()->json(['etat' => true]);
+    }
+
+
+
+    //Portfolio portfolio
+
+    public function addPortfolio(Request $request)
+    {
+        $experience = new portfolio();
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true, 'id' => $experience->id]);
+    }
+
+    public function updatePortfolio(Request $request)
+    {
+        $experience = portfolio::find($request->id);
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true]);
+    }
+
+
+    public function deletePortfolio($id)
+    {
+        $experience = portfolio::find($id);
+        $experience->delete();
+        return Response()->json(['etat' => true]);
+    }
+
+
+    // Kompetenenz kompetenenz
+    public function addKompetenenz(Request $request)
+    {
+        $experience = new competences();
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true, 'id' => $experience->id]);
+    }
+
+
+    public function updateKompetenenz(Request $request)
+    {
+        $experience = competences::find($request->id);
+        $experience->titre = $request->titre;
+        $experience->body = $request->body;
+        $experience->cv_id = $request->cv_id;
+        $experience->lien = $request->lien;
+        $experience->image = $request->image;
+        $experience->save();
+        return Response()->json(['etat' => true]);
+    }
+
+
+    public function deleteKompetenenz($id)
+    {
+        $experience = competences::find($id);
+        $experience->delete();
+        return Response()->json(['etat' => true]);
+    }
 }

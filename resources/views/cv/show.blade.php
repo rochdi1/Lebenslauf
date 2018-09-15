@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appwithoutappjs')
 
 
 @section('content')
@@ -10,20 +10,20 @@
           <!-- on ecrit @ et apre le variable parsquil vue js et blade il ont les meme technique -->
 			<h1>@{{ message }}</h1>
 		
-			
+			<!--  Experience  -->
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-md-10"><h3 class="panel-title">Erfahrung</h3></div>
 						<div class="col-md-2 text-right">			
 						<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
-							<button type="submit"  class="btn btn-primary form-control" v-on:click="open = true">Hinzufügen</button>
+							<button type="submit"  class="btn btn-primary form-control" v-on:click="openexp = true">Hinzufügen</button>
 						</div>
 					</div>
 					
 				</div>
 				<div class="panel-body">
-					<div v-if="open">
+					<div v-if="openexp">
 					
 					   
 								   <div class="form-group">
@@ -46,7 +46,7 @@
 								   </div>
 					   
 								   <div class="form-group">	
-									<button v-if="edit" type="submit" class="  btn btn-danger form-control" v-on:click="updateExperience">Update</button>
+									<button v-if="editexp" type="submit" class="  btn btn-danger form-control" v-on:click="updateExperience">Update</button>
 		 
 									<button v-else type="submit" class="  btn btn-primary form-control" v-on:click="addExperience">Hinzufügen</button>
    
@@ -73,55 +73,252 @@
 			</div>
 
 			<hr>
-
+			<!--  Ausbildung  -->
+				
 			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-md-10"><h3 class="panel-title">Ausbildung</h3></div>
-						<div class="col-md-2 text-right">
-							<button class="btn btn-success">Hinzufügen</button>
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-10"><h3 class="panel-title">Ausbildung</h3></div>
+							<div class="col-md-2 text-right">			
+							<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
+								<button type="submit"  class="btn btn-primary form-control" v-on:click="openaus = true">Hinzufügen</button>
+							</div>
 						</div>
+						
 					</div>
-					
+					<div class="panel-body">
+						<div v-if="openaus">
+						
+						   
+									   <div class="form-group">
+										<label for="titre">Titel</label>
+										<input type="text" name="titre" class="form-control" v-model="ausbildung.titre">
+									   </div>
+									   <div class="form-group">
+											<label for="description">Description</label>
+											<input type="text" name="description" class="form-control" v-model="ausbildung.description">
+										   </div>
+						   
+									   <div class="form-group">
+										<label for="debut">Anfangsdatum</label>
+										<input type="date" name="debut" class="form-control" v-model="ausbildung.debut">
+									   </div>
+						   
+									   <div class="form-group">
+										<label for="fin">Enddatum</label>
+										<input type="date" name="fin" class="form-control" v-model="ausbildung.fin">
+									   </div>
+						   
+									   <div class="form-group">	
+										<button v-if="editaus" type="submit" class="  btn btn-danger form-control" v-on:click="updateAusbildung">Update</button>
+			 
+										<button v-else type="submit" class="  btn btn-primary form-control" v-on:click="addAusbildung">Hinzufügen</button>
+	   
+									</div>
+						   
+									 
+						</div>	
+						
+						<ul class="list-group">
+								
+	
+							<li class="list-group-item" v-for="exp in ausbildungs">
+								<div class="pull-right">
+									<button class="btn btn-warning btn-sm" v-on:click="editAusbildung(exp)">Bearbeiten</button>
+									<button class="btn btn-danger btn-sm" v-on:click="deleteAusbildung(exp)">Löschen</button>
+								</div>
+								<h3>@{{ exp.titre }}</h3>
+								<p>@{{ exp.description }}</p>
+								<small>@{{ exp.debut }} - @{{ exp.fin }}</small>
+							</li>
+						</ul>
+	
+					</div>
 				</div>
-				<div class="panel-body">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus veritatis consequatur, voluptates, expedita tempore rem illum magni ipsum repudiandae.
-				</div>
-			</div>
 
 			<hr>
-
+			
+			
+			<!--  Project  -->
 			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-md-10"><h3 class="panel-title">Portefolio</h3></div>
-						<div class="col-md-2 text-right">
-							<button class="btn btn-success">Hinzufügen</button>
-						</div>
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-10"><h3 class="panel-title">Project</h3></div>
+							<div class="col-md-2 text-right">			
+								<button type="submit"  class="btn btn-primary form-control" v-on:click="openpro = true">Hinzufügen</button>
+							</div>
+						</div>	
 					</div>
-					
-				</div>
-				<div class="panel-body">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus veritatis consequatur, voluptates, expedita tempore rem illum magni ipsum repudiandae.
-				</div>
+					<div class="panel-body">
+						<div v-if="openpro">
+									   <div class="form-group">
+										<label for="titre">Titel</label>
+										<input type="text" name="titre" class="form-control" v-model="project.titre">
+									   </div>
+									   <div class="form-group">
+											<label for="description">Description</label>
+											<input type="text" name="body" class="form-control" v-model="project.description">
+										   </div>
+						   
+									   <div class="form-group">
+										<label for="debut">Anfangsdatum</label>
+										<input type="date" name="debut" class="form-control" v-model="project.debut">
+									   </div>
+						   
+									   <div class="form-group">
+										<label for="fin">Enddatum</label>
+										<input type="date" name="fin" class="form-control" v-model="project.fin">
+									   </div>
+						   
+									   <div class="form-group">	
+										<button v-if="editpro" type="submit" class="  btn btn-danger form-control" v-on:click="updateProject">Update</button>
+			 
+										<button v-else type="submit" class="  btn btn-primary form-control" v-on:click="addProject">Hinzufügen</button>
+	   
+									</div>
+						   
+									 
+						</div>	
+						
+						<ul class="list-group">
+							<li class="list-group-item" v-for="exp in projects">
+								<div class="pull-right">
+									<button class="btn btn-warning btn-sm" v-on:click="editProject(exp)">Bearbeiten</button>
+									<button class="btn btn-danger btn-sm" v-on:click="deleteProject(exp)">Löschen</button>
+								</div>
+								<h3>@{{ exp.titre }}</h3>
+								<p>@{{ exp.description }}</p>
+								<small>@{{ exp.debut }} - @{{ exp.fin }}</small>
+							</li>
+						</ul>
+	
+					</div>
 			</div>
-
+	
 			<hr>
 
+			
+				<!--  Portfolio  -->
 			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-md-10"><h3 class="panel-title">Kompetenz</h3></div>
-						<div class="col-md-2 text-right">
-							<button class="btn btn-success">Hinzufügen</button>
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-10"><h3 class="panel-title">Portefolio</h3></div>
+							<div class="col-md-2 text-right">			
+							<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
+								<button type="submit"  class="btn btn-primary form-control" v-on:click="openpor = true">Hinzufügen</button>
+							</div>
 						</div>
+						
 					</div>
-					
+					<div class="panel-body">
+						<div v-if="openpor">
+						
+						   
+									   <div class="form-group">
+										<label for="titre">Titel</label>
+										<input type="text" name="titre" class="form-control" v-model="portfolio.titre">
+									   </div>
+									   <div class="form-group">
+											<label for="description">description</label>
+											<input type="text" name="description" class="form-control" v-model="portfolio.description">
+										   </div>
+						   
+									   <div class="form-group">
+										<label for="debut">Anfangsdatum</label>
+										<input type="date" name="debut" class="form-control" v-model="portfolio.debut">
+									   </div>
+						   
+									   <div class="form-group">
+										<label for="fin">Enddatum</label>
+										<input type="date" name="fin" class="form-control" v-model="portfolio.fin">
+									   </div>
+						   
+									   <div class="form-group">	
+										<button v-if="editpor" type="submit" class="  btn btn-danger form-control" v-on:click="updatePortfolio">Update</button>
+			 
+										<button v-else type="submit" class="  btn btn-primary form-control" v-on:click="addPortfolio">Hinzufügen</button>
+	   
+									</div>
+						   
+									 
+						</div>	
+						
+						<ul class="list-group">
+								
+	
+							<li class="list-group-item" v-for="exp in portfolios">
+								<div class="pull-right">
+									<button class="btn btn-warning btn-sm" v-on:click="editPortfolio(exp)">Bearbeiten</button>
+									<button class="btn btn-danger btn-sm" v-on:click="deletePortfolio(exp)">Löschen</button>
+								</div>
+								<h3>@{{ exp.titre }}</h3>
+								<p>@{{ exp.description }}</p>
+								<small>@{{ exp.debut }} - @{{ exp.fin }}</small>
+							</li>
+						</ul>
+	
+					</div>
 				</div>
-				<div class="panel-body">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus veritatis consequatur, voluptates, expedita tempore rem illum magni ipsum repudiandae.
+
+			<hr>
+			<!--  Kompetenenz  -->
+			<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-10"><h3 class="panel-title">Kompetenz</h3></div>
+							<div class="col-md-2 text-right">			
+							<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
+								<button type="submit"  class="btn btn-primary form-control" v-on:click="openKomp = true">Hinzufügen</button>
+							</div>
+						</div>
+						
+					</div>
+					<div class="panel-body">
+						<div v-if="openKomp">
+						
+									   <div class="form-group">
+										<label for="titre">Titel</label>
+										<input type="text" name="titre" class="form-control" v-model="kompetenenz.titre">
+									   </div>
+									   <div class="form-group">
+											<label for="description">description</label>
+											<input type="text" name="description" class="form-control" v-model="kompetenenz.description">
+										</div>
+						   
+									   <div class="form-group">
+										<label for="debut">Anfangsdatum</label>
+										<input type="date" name="debut" class="form-control" v-model="kompetenenz.debut">
+									   </div>
+						   
+									   <div class="form-group">
+										<label for="fin">Enddatum</label>
+										<input type="date" name="fin" class="form-control" v-model="kompetenenz.fin">
+									   </div>
+						   
+									   <div class="form-group">	
+										<button v-if="editkomp" type="submit" class="  btn btn-danger form-control" v-on:click="updateKompetenenz">Update</button>
+			 
+										<button v-else type="submit" class="  btn btn-primary form-control" v-on:click="addKompetenenz">Hinzufügen</button>
+	   
+									</div>
+						   
+									 
+						</div>	
+						
+						<ul class="list-group">
+							<li class="list-group-item" v-for="exp in kompetenenzes">
+								<div class="pull-right">
+									<button class="btn btn-warning btn-sm" v-on:click="editKompetenenz(exp)">Bearbeiten</button>
+									<button class="btn btn-danger btn-sm" v-on:click="deleteKompetenenz(exp)">Löschen</button>
+								</div>
+								<h3>@{{ exp.titre }}</h3>
+								<p>@{{ exp.description }}</p>
+								<small>@{{ exp.debut }} - @{{ exp.fin }}</small>
+							</li>
+						</ul>
+	
+					</div>
 				</div>
-			</div>
 		  
 		</div>
 	</div>
@@ -133,8 +330,7 @@
 @section('javascripts')
 
 
-<script src="{{ asset('js/vue.js') }}"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 
 <script>
@@ -145,136 +341,8 @@
   
         ]) !!};
 </script>
-<script>
+<script src="{{ asset('js/myscript.js') }}"></script> 
 
 
-	var app = new Vue({
-       el: '#app',
-       data: {
-			message: 'Ich bin Rochdi',
-			experiences: {},
-			open:false,
-			experience: {
-				id: 0,
-				cv_id: window.Laravel.idExperience,
-				titre: '',
-				body: '',
-				debut: '',
-				fin: ''
-			},
-			edit:false
-		
-	   },
-	   methods: {
-		   getExperiences: function() {
-		//	axios.get('http://127.0.0.1:8000/getexperiences')
-			axios.get(window.Laravel.url+'/getexperiences/'+window.Laravel.idExperience)
-			.then(response => (this.experiences = response.data))
-				.catch(error=>{
-					// handle error
-				//	console.log(error);
-				})
-			
-		   },
-		   addExperience: function() {
-			   
-			axios.post(window.Laravel.url+'/addexperience', this.experience)
-			.then(response => {
-					
-					if(response.data.etat){
-						this.open= false;
-						this.experience.id = response.data.id;
-					//	this.experiences.push(this.experience);
-					this.experiences.unshift(this.experience);
-					this.experience= {
-						id: 0,
-						cv_id: window.Laravel.idExperience,
-						titre: '',
-						body: '',
-						debut: '',
-						fin: ''
-					  }
-					}
-				})
-				.catch(error=>{
-					// handle error
-				//	console.log(error);
-				})
-				
-		   },
-		   editExperience: function(experience) {
-			this.open		= true;
-			this.edit		= true;
-			this.experience	= experience;
-		   },
-		   updateExperience: function() {
-			axios.put(window.Laravel.url+'/updateexperience', this.experience)
-			.then(response => {
-					
-					if(response.data.etat){
-						this.open= false;
-				
-						this.experience= {
-							id: 0,
-							cv_id: window.Laravel.idExperience,
-							titre: '',
-							body: '',
-							debut: '',
-							fin: ''
-						}
-					}
-					this.edit= false;
-				})
-				.catch(error=>{
-					// handle error
-				//	console.log(error);
-				})
-		   },
-		   deleteExperience: function(experience) {
-			swal({
-				title: 'Are you sure?',
-				text: "You won't be able to revert this!",
-				type: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete it!'
-			  }).then((result) => {
-				if (result.value) {
-					axios.put(window.Laravel.url+'/deleteexperience/'+experience.id)
-					.then(response => {
-							
-							if(response.data.etat){
-								var position = this.experiences.indexOf(experience);
-								this.experiences.splice(position, 1);
-							}
-							
-						})
-						.catch(error=>{
-							// handle error
-						//	console.log(error);
-						})
-				  swal(
-					'Deleted!',
-					'Your file has been deleted.',
-					'success'
-				  )
-				}
-			  })
-			
-
-
-				console.log('delete');
-				
-		   }
-		 
-	   },
-	   mounted:function() {
-		   this.getExperiences();
-	   }
-	
-	});
-
-</script>
 
 @endsection

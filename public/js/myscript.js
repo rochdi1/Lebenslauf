@@ -7,6 +7,7 @@ var app = new Vue({
     kompetenenzes: [],
     ausbildungs: [],
     experiences: [],
+    errors: [],
     openexp: false,
     openaus: false,
     openpor: false,
@@ -98,10 +99,10 @@ var app = new Vue({
             }
           }
         })
-        .catch(error => {
-          // handle error
-          	console.log(error);
-        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+
+     });
 
     }, 
     editExperience: function(experience) {

@@ -161,7 +161,7 @@ class CvController extends Controller
     // Experiences experiences
 
 
-    public function addExperiences(Request $request)
+    public function addExperiences(cvRequest $request)
     {
         $experience = new Experience();
         $experience->titre = $request->titre;
@@ -173,7 +173,7 @@ class CvController extends Controller
         return Response()->json(['etat' => true, 'id' => $experience->id]);
     }
 
-    public function updateExperiences(Request $request)
+    public function updateExperiences(cvRequest $request)
     {
         $experience = Experience::find($request->id);
         $experience->titre = $request->titre;
@@ -195,7 +195,7 @@ class CvController extends Controller
 
     // Ausbildung ausbildung
 
-    public function addAusbildung(Request $request)
+    public function addAusbildung(cvRequest $request)
     {
         $ausbildung = new formations();
         $ausbildung->titre = $request->titre;
@@ -210,7 +210,7 @@ class CvController extends Controller
     }
 
 
-    public function updateAusbildung(Request $request)
+    public function updateAusbildung(cvRequest $request)
     {
         $experience = formations::find($request->id);
         $experience->titre = $request->titre;
@@ -234,7 +234,7 @@ class CvController extends Controller
 
     //Project project
 
-    public function addProject(Request $request)
+    public function addProject(cvRequest $request)
     {
         $experience = new project();
         $experience->titre = $request->titre;
@@ -246,7 +246,7 @@ class CvController extends Controller
         return Response()->json(['etat' => true, 'id' => $experience->id]);
     }
 
-    public function updateProject(Request $request)
+    public function updateProject(cvRequest $request)
     {
         $experience = project::find($request->id);
         $experience->titre = $request->titre;
@@ -269,7 +269,7 @@ class CvController extends Controller
 
     //Portfolio portfolio
 
-    public function addPortfolio(Request $request)
+    public function addPortfolio(cvRequest $request)
     {
         $experience = new portfolio();
         $experience->titre = $request->titre;
@@ -281,7 +281,7 @@ class CvController extends Controller
         return Response()->json(['etat' => true, 'id' => $experience->id]);
     }
 
-    public function updatePortfolio(Request $request)
+    public function updatePortfolio(cvRequest $request)
     {
         $experience = portfolio::find($request->id);
         $experience->titre = $request->titre;
@@ -303,7 +303,7 @@ class CvController extends Controller
 
 
     // Kompetenenz kompetenenz
-    public function addKompetenenz(Request $request)
+    public function addKompetenenz(cvRequest $request)
     {
         $experience = new competences();
         $experience->titre = $request->titre;
@@ -316,7 +316,7 @@ class CvController extends Controller
     }
 
 
-    public function updateKompetenenz(Request $request)
+    public function updateKompetenenz(cvRequest $request)
     {
         $experience = competences::find($request->id);
         $experience->titre = $request->titre;

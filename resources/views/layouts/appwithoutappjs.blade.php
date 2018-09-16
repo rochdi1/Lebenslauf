@@ -42,6 +42,7 @@
 
    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script> 
    <script src="{{ asset('js/vue.js') }}"></script>
+   <script src="{{ asset('js/vee-validate.js') }}"></script>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
    <!-- javascript code de Vue js -->

@@ -16,7 +16,6 @@
 					<div class="row">
 						<div class="col-md-10"><h3 class="panel-title">Erfahrung</h3></div>
 						<div class="col-md-2 text-right">			
-						<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
 							<button type="submit"  class="btn btn-primary form-control" v-on:click="openexp = true">Hinzufügen</button>
 						</div>
 					</div>
@@ -27,22 +26,24 @@
 					
 					   
 								   <div class="form-group">
-									<label for="titre">Titel</label>
-									<input type="text" name="titre" class="form-control" v-model="experience.titre">
-								   </div>
+									<label for="titre">Titeltest</label>
+									<input type="text" name="titre" v-validate="'required'" class="form-control" v-model="experience.titre">
+								<!--	<span v-show="errors.has('titre')" >@{{ errors.first('titre') }}</span>-->
+									<span v-if="errors.titre">@{{ errors.titre[0] }}</span>
+									</div>
 								   <div class="form-group">
 										<label for="body">Body</label>
-										<input type="text" name="body" class="form-control" v-model="experience.body">
-									   </div>
+										<input type="text" v-validate="'required'" name="body" class="form-control" v-model="experience.body">
+									</div>
 					   
 								   <div class="form-group">
 									<label for="debut">Anfangsdatum</label>
-									<input type="date" name="debut" class="form-control" v-model="experience.debut">
+									<input type="date" v-validate="'required'" name="debut" class="form-control" v-model="experience.debut">
 								   </div>
 					   
 								   <div class="form-group">
 									<label for="fin">Enddatum</label>
-									<input type="date" name="fin" class="form-control" v-model="experience.fin">
+									<input type="date" v-validate="'required'" name="fin" class="form-control" v-model="experience.fin">
 								   </div>
 					   
 								   <div class="form-group">	
@@ -80,7 +81,7 @@
 						<div class="row">
 							<div class="col-md-10"><h3 class="panel-title">Ausbildung</h3></div>
 							<div class="col-md-2 text-right">			
-							<!--	<a href="{{ url('experience/1') }}" class="btn btn-success">Hinzufügen</a> -->
+							
 								<button type="submit"  class="btn btn-primary form-control" v-on:click="openaus = true">Hinzufügen</button>
 							</div>
 						</div>
@@ -337,6 +338,7 @@
 
 
 <script>
+	Vue.use(VeeValidate);
         window.Laravel = {!! json_encode([
 			'csrfToken'		 => csrf_token(),
 			'idExperience' 	 => $id,

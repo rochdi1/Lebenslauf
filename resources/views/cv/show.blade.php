@@ -34,6 +34,7 @@
 								   <div class="form-group">
 										<label for="body">Body</label>
 										<input type="text" v-validate="'required'" name="body" class="form-control" v-model="experience.body">
+										<span v-if="errors.body">@{{ errors.body[0] }}</span>
 									</div>
 					   
 								   <div class="form-group">

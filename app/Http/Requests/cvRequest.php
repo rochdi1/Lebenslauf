@@ -26,6 +26,7 @@ class cvRequest extends FormRequest
         return [
             'titre'        => 'required|min:3',
             'presentation' => 'required|min:10|max:200',
+            'body'         => 'required|min:10|max:200',
             'photo'        => 'mimes:jpeg,png,bmp,gif'
         ];
     }

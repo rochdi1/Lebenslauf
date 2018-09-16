@@ -160,13 +160,6 @@ class CvController extends Controller
 
     // Experiences experiences
 
-    public function getExperiences($id)
-    {
-        $cv = Cv::find($id);
-
-        return $cv->experiences;
-    }
-
 
     public function addExperiences(Request $request)
     {
@@ -204,14 +197,16 @@ class CvController extends Controller
 
     public function addAusbildung(Request $request)
     {
-        $experience = new formations();
-        $experience->titre = $request->titre;
-        $experience->description = $request->description;
-        $experience->cv_id = $request->cv_id;
-        $experience->debut = $request->debut;
-        $experience->fin = $request->fin;
-        $experience->save();
-        return Response()->json(['etat' => true, 'id' => $experience->id]);
+        $ausbildung = new formations();
+        $ausbildung->titre = $request->titre;
+        $ausbildung->description = $request->description;
+        $ausbildung->cv_id = $request->cv_id;
+        $ausbildung->lien = $request->lien;
+       
+        $ausbildung->image = $request->image;
+      
+        $ausbildung->save();
+        return Response()->json(['etat' => true, 'id' => $ausbildung->id]);
     }
 
 

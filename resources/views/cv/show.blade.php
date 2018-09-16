@@ -97,8 +97,20 @@
 									   <div class="form-group">
 											<label for="description">Description</label>
 											<input type="text" name="description" class="form-control" v-model="ausbildung.description">
-										   </div>
+										</div>
+										<div class="form-group">
+										<label for="lien">Lien</label>
+										<input type="text" name="lien" class="form-control" v-model="ausbildung.lien">
+										</div>
+										<div class="form-group">
+											<label for="image">Image</label>
+											
+											<input type="text" name="image" class="form-control" v-model="ausbildung.image">
+										</div>
 						   
+
+							
+
 						   
 									   <div class="form-group">	
 										<button v-if="editaus" type="submit" class="  btn btn-danger form-control" v-on:click="updateAusbildung">Update</button>

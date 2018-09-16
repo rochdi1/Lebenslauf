@@ -44,14 +44,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('getdata/{id}', 'CvController@getData');
 
 //Experiences experiences
-Route::get('getexperiences/{id}', 'CvController@getExperiences');
+
 Route::post('/addexperience', 'CvController@addExperiences');
 Route::put('/updateexperience', 'CvController@updateExperiences');
 Route::put('/deleteexperience/{id}', 'CvController@deleteExperiences');
 
 
 // Ausbildung ausbildung
-Route::get('getausbildungs/{id}', 'CvController@getAusbildungs');
+
 Route::post('/addausbildung', 'CvController@addAusbildung');
 Route::put('/updateausbildung', 'CvController@updateAusbildung');
 Route::put('/deleteausbildung/{id}', 'CvController@deleteAusbildung');
